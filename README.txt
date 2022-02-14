@@ -58,6 +58,8 @@ Enter '1' to view tax form details. Inputs are described by the following prompt
         Please enter the tax form number separated by a comma followed by a space: 
         (ex: Form W-2, Form 1095-C, Form W-3, etc)
 
+        >> Forms: Form W-2
+
 Output will display a success message and all forms requested as json in this format:
 
         [
@@ -78,12 +80,13 @@ Enter '2' to enter a tax form name and a range of years (inclusive) to be downlo
 Prompts for input are provided as in the exampled below -
 
             Please enter a tax form you would like to download to a pdf format.
+            (ex. Form: Form W-3  --  year format is: YYYY)
 
-            Form: Form W-2
+            >> Form: Form W-2
 
-            Please enter the minimum year: 2020
+            >> Please enter the minimum year: 2020
 
-            Please enter the maximum year: 2022
+            >> Please enter the maximum year: 2022
 
 Output will display a success message and pdf file(s) will be downloaded to a 
 subdirectory under the script's main directory.

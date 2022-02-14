@@ -7,7 +7,6 @@ user_request = ""
 
 # BEGIN HERE
 while user_request != 'quit':
-
     print('\nPlease select which utility you would like to use:\n')
     print('1)View tax form details in json format')
     print('2)Download a tax form given a range of years\n')
@@ -17,7 +16,6 @@ while user_request != 'quit':
 
     # UTILITY 1 - SEARCH FORMS AND RETURN JSON DATA
     if user_request == '1':
-
         search_prompt()
         forms_for_url = format_form_request(requested_forms)
         format_all_responses(forms_for_url)
@@ -30,7 +28,6 @@ while user_request != 'quit':
 
     # UTILITY 2 - DOWNLOAD FORMS TO PDF 
     elif user_request == '2':
-
         download_prompt()
         form_for_url = format_form_request(requested_dl_forms)
         parsed_forms = format_all_responses(form_for_url)

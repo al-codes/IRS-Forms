@@ -19,7 +19,7 @@ Set Up
 1. Download zip drive to your hard drive. The zip file contains this README, 5 python files
    and a requirements.txt file.
 
-2. In the tereminal, under the project directory, you can set up a virtual environment by entering:
+2. In the terminal, under the project directory, you can set up a virtual environment by entering:
    $ virtualenv env
    $ source env/bin/activate
 

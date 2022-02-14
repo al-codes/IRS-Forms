@@ -20,19 +20,23 @@ Set Up
    and a requirements.txt file.
 
 2. In the terminal, under the project directory, you can set up a virtual environment by entering:
+   
    $ virtualenv env
    $ source env/bin/activate
 
-   * If you don't have virtualenv installed, you can install by entering the following:
+   *** If you don't have virtualenv installed, you can install by entering the following:
    $ pip install virtualenv   (or pip3 depending on your version of pip installer)
 
 3. Install dependencies from requirements.txt with:
+
    $ pip install -r requirements.txt
 
 * If you choose not to set up this way, you can download the libraries needed by entering:
+
     $ pip install requests
     $ pip install requests-HTML
 
+--------------------------------------------------------------------------------------------
 
 Running the Script
 
@@ -51,7 +55,8 @@ A menu will be displayed, prompting you to select which utility you would like t
 
         (Enter 1, 2 or type QUIT to exit program)
 
-Utility 1 
+
+UTILITY 1 - SEARCH AND VIEW TAX FORMS
 
 Enter '1' to view tax form details. Inputs are described by the following prompt:
 
@@ -59,6 +64,7 @@ Enter '1' to view tax form details. Inputs are described by the following prompt
         (ex: Form W-2, Form 1095-C, Form W-3, etc)
 
         >> Forms: Form W-2
+
 
 Output will display a success message and all forms requested as json in this format:
 
@@ -73,7 +79,7 @@ Output will display a success message and all forms requested as json in this fo
         ]
 
 
-Utility 2
+UTILITY 2 - DOWNLOAD TAX FORMS TO PDF
 
 Enter '2' to enter a tax form name and a range of years (inclusive) to be downloaded.
 
@@ -88,12 +94,14 @@ Prompts for input are provided as in the exampled below -
 
             >> Please enter the maximum year: 2022
 
+
 Output will display a success message and pdf file(s) will be downloaded to a 
 subdirectory under the script's main directory.
 
 
 To QUIT the program, you can type 'quit' (not case sensitive).
 
+--------------------------------------------------------------------------------------------
 
 Improvements and Feedback 
 

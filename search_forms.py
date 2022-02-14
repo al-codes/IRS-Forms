@@ -15,7 +15,7 @@ def search_prompt():
 
     print('\nPlease enter the tax form number separated by a comma followed by a space: ')
     print('(ex: Form W-2, Form 1095-C, Form W-3, etc)\n')
-    form_names = input('Forms: ').split(', ')
+    form_names = input('>> Forms: ').split(', ')
     requested_forms.extend(form_names) 
     return requested_forms
 
@@ -26,5 +26,5 @@ def jsonify_list_of_dicts(dict_list):
     json_format = json.dumps(dict_list, indent=4)
     print('\n************************************')
     print('********* Search Completed *********')
-    print('************************************')
+    print('************************************\n')
     return json_format

@@ -13,10 +13,11 @@ desired_year_range = []
 def download_prompt():
     """Gets tax form name and year range for download"""
     
-    print('\nPlease enter a tax form you would like to download to a pdf format.\n')
-    requested_form = input('Form: ')
-    min_year = input('\nPlease enter the minimum year: ')
-    max_year = input('\nPlease enter the maximum year: ')
+    print('\nPlease enter a tax form you would like to download to a pdf format.')
+    print('(ex. Form: Form W-3  --  year format is: YYYY)\n')
+    requested_form = input('>> Form: ')
+    min_year = input('\n>> Please enter the minimum year: ')
+    max_year = input('\n>> Please enter the maximum year: ')
     requested_dl_forms.append(requested_form)
     desired_year_range.append(min_year)
     desired_year_range.append(max_year)

@@ -24,4 +24,7 @@ def jsonify_list_of_dicts(dict_list):
     """Convert list of dictionaries to JSON"""
 
     json_format = json.dumps(dict_list, indent=4)
+    print('\n************************************')
+    print('********* Search Completed *********')
+    print('************************************')
     return json_format

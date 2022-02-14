@@ -49,7 +49,13 @@ def download_pdfs(pdf_dict):
         form_name = form.split(' -')[0]
         url = link
         response = requests.get(url)
+
         if not os.path.exists(form_name):
             os.mkdir(form_name)
+
         with open(f'{form_name}/{form}.pdf', 'wb') as f:
             f.write(response.content)
+            
+    print('\n************************************')
+    print('All pdf files have been downloaded.')
+    print('************************************')

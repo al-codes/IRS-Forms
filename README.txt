@@ -36,8 +36,8 @@ Set Up
 
 Running the Script
 
-Once you have downloaded the files and downloaded all of the necessary libraries, 
-run the script by entering:
+Once you have downloaded the files and downloaded all of the necessary libraries, under the 
+project directory, run the script by entering:
        
        $ python3 main.py 
 

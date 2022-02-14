@@ -2,6 +2,7 @@ from requests_html import HTMLSession
 import requests
 import json
 import os
+from helper import *
 
 # requests-html object
 session = HTMLSession()
@@ -31,20 +32,17 @@ def download_prompt():
     requested_form = input('Form: ')
     min_year = input('\nPlease enter the minimum year: ')
     max_year = input('\nPlease enter the maximum year: ')
+    requested_forms.append(requested_form)
     desired_year_range.append(min_year)
     desired_year_range.append(max_year)
-    return requested_form
-
-def format_form_request(requested_forms):
-    """Formats user input for url"""
-
-    forms_for_url = [form.replace(' ', '+') for form in requested_forms]
-    return forms_for_url
+    return 
 
 
 def get_website_data(form_for_url):
     """Searches for form and gets response from IRS website"""
-    
+
+    if type(form_for_url) == list:
+        form_for_url = form_for_url[0]
     url_start = 'https://apps.irs.gov/app/picklist/list/priorFormPublication.html'   
     url_end = f'?resultsPerPage=200&sortColumn=sortOrder&indexOfFirstRow=0&value={form_for_url}&criteria=formNumber&submitSearch=Find&isDescending=false'
     response = session.get(url_start + url_end)
@@ -53,7 +51,7 @@ def get_website_data(form_for_url):
 
 def format_response(response, form):
     """Parses and formats response to create a dictionary"""
-    
+  
     form_dict = {
             'form_number': '',
             'form_title': '',
@@ -70,6 +68,7 @@ def format_response(response, form):
         form_number = form_details[0]
         form_title = form_details[1]
         year = int(form_details[2])
+        
         # check for correct form
         if form_number == form.replace('+', ' '): 
             form_dict['form_number'] = form_number
@@ -82,20 +81,25 @@ def format_response(response, form):
                 form_dict['min_year'] = year
             elif year >= form_dict['min_year']:
                 pass
-        # check for duplicates
+
+        # check for duplicates  
         if form_dict not in dict_list_to_json:
             dict_list_to_json.append(form_dict)
     return parsed_forms
-            
+
 
 def format_all_responses(form_names):
-    """Formats all forms requested by user"""
+    """Formats all requested form responses and adds to dict"""
 
+    formatted_responses = []
     for form in form_names:
         response = get_website_data(form)
-        format_response(response, form)
-    return
-                    
+        formatted_dicts = format_response(response, form)
+
+        if len(form_names) == 1:
+            formatted_responses.extend(formatted_dicts)
+            return formatted_responses         
+
 
 def jsonify_list_of_dicts(dict_list):
     """Convert list of dictionaries to JSON"""
@@ -104,21 +108,18 @@ def jsonify_list_of_dicts(dict_list):
     return json_format
 
 
-def clear_list(lst):
-    """Clears list for next query"""
-    lst.clear()
-    return
-
-
 def filter_responses(parsed_forms, requested_form):
     """Filters for correct form responses"""
     
+    requested_form = strip_format(requested_form[0])
+
     filtered_form_response = []
+
     for obj in parsed_forms:
         form_details = obj.text.split('\n')
         form_number = form_details[0]
         # check for duplicates
-        if form_number == requested_form.replace('+', ' '): 
+        if form_number == requested_form:    
             filtered_form_response.append(obj)
     return filtered_form_response
 
@@ -166,6 +167,7 @@ if __name__ == '__main__':
         print('(Enter 1, 2 or type QUIT to exit program)')
         user_request = input('\n>> ').lower().strip()
 
+
         # UTILITY 1 - SEARCH FORMS AND RETURN JSON DATA
         if user_request == '1':
             requested_forms = search_prompt()
@@ -176,21 +178,19 @@ if __name__ == '__main__':
             clear_list(requested_forms)
             clear_list(dict_list_to_json)
             
-            
 
         # UTILITY 2 - DOWNLOAD FORMS TO PDF 
         elif user_request == '2':
-            requested_form = download_prompt()
-            form_for_url = format_form_request(requested_form)
-            response = get_website_data(form_for_url)
-            parsed_forms = format_response(response, requested_form)
-            filtered_pdfs = filter_responses(parsed_forms, requested_form)
+            download_prompt()
+            form_for_url = format_form_request(requested_forms)
+            parsed_forms = format_all_responses(form_for_url)
+            filtered_pdfs = filter_responses(parsed_forms, requested_forms)
             all_pdfs = collect_all_pdfs(filtered_pdfs)
             download_pdfs(all_pdfs)
             # clear lists for next query
             clear_list(dict_list_to_json)
             clear_list(desired_year_range)
-
+            
         # EXIT PROGRAM
         elif user_request == 'quit':
             print('Bye!')

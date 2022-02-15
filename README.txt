@@ -1,18 +1,18 @@
 IRS Form Scraper Coding Challenge
 
 
-Python Version
+-- Python Version --
 Python 3.8.5
 
 
-Libraries Used
+-- Libraries Used --
 requests-HTML
 Requests
 JSON
 OS 
 
 
-Installation Guide
+-- Installation Guide --
 
 Set Up
 
@@ -34,7 +34,7 @@ Set Up
     $ pip install requests-HTML
 
 
-Running the Script
+-- Running the Script --
 
 Once you have downloaded the files and downloaded all of the necessary libraries, under the 
 project directory, run the script by entering:
@@ -42,16 +42,21 @@ project directory, run the script by entering:
        $ python3 main.py 
 
 
-A menu will be displayed, prompting you to select which utility you would like to use -
+A menu will be displayed, prompting you to select which utility you would like to use
 
+       --------------------------------------------------
         Please select which utility you would like to use:
 
-        1)View tax form details in json format
-        2)Download a tax form given a range of years
+        1 - View tax form details in json format
+
+        2 - Download a tax form given a range of years
 
         (Enter 1, 2 or type QUIT to exit program)
+        --------------------------------------------------
 
-Utility 1 
+
+
+-- Utility 1 --
 
 Enter '1' to view tax form details. Inputs are described by the following prompt:
 
@@ -73,11 +78,11 @@ Output will display a success message and all forms requested as json in this fo
         ]
 
 
-Utility 2
+-- Utility 2 --
 
 Enter '2' to enter a tax form name and a range of years (inclusive) to be downloaded.
 
-Prompts for input are provided as in the exampled below -
+Prompts for input are provided as in the exampled below:
 
             Please enter a tax form you would like to download to a pdf format.
             (ex. Form: Form W-3  --  year format is: YYYY)
@@ -92,17 +97,15 @@ Output will display a success message and pdf file(s) will be downloaded to a
 subdirectory under the script's main directory.
 
 
-To QUIT the program, you can type 'quit' (not case sensitive).
+
+* To QUIT the program, you can type 'quit' (not case sensitive).
 
 
-Improvements and Feedback 
+-- Feedback --
 
-My next steps towards improving the script would be to add code to 
-handle errors for an invalid year range and invalid form inputs. 
-
-I enjoyed this challenge as it was a good review of Python and I 
-got to use a library that I had never used before, requests-HTML,
-which I found to be a great tool for this project. 
+I enjoyed this challenge as it was a good review of Python and I got to use a 
+library that I had never used before, requests-HTML, which I found to be a 
+great tool for this project. 
 
 Thank you for the opportunity!
 

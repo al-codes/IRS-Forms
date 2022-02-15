@@ -7,10 +7,14 @@ user_request = ""
 
 # BEGIN HERE
 while user_request != 'quit':
-    print('\nPlease select which utility you would like to use:\n')
-    print('1)View tax form details in json format')
-    print('2)Download a tax form given a range of years\n')
+    print('\n--------------------------------------------------')
+    print('--------------------------------------------------\n')
+    print('Please select which utility you would like to use:\n')
+    print('1 - View tax form details in json format\n')
+    print('2 - Download a tax form given a range of years\n')
     print('(Enter 1, 2 or type QUIT to exit program)')
+    print('\n--------------------------------------------------')
+    print('--------------------------------------------------')
     user_request = input('\n>> ').lower().strip()
 
 
@@ -45,4 +49,8 @@ while user_request != 'quit':
     elif user_request == 'quit':
         print('Bye!')
         break
+    
+    
+    else:
+        print('\nEnter 1, 2 or type QUIT to exit program\n')
     

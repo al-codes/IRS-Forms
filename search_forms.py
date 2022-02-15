@@ -1,7 +1,7 @@
 """ IRS Form Search """
 
 from requests_html import HTMLSession
-from form_scraper import format_response, format_all_responses, dict_list_to_json
+from form_scraper import dict_list_to_json
 import json
 
 # requests-html object
@@ -16,15 +16,22 @@ def search_prompt():
     print('\nPlease enter the tax form number separated by a comma followed by a space: ')
     print('(ex: Form W-2, Form 1095-C, Form W-3, etc)\n')
     form_names = input('>> Forms: ').split(', ')
-    requested_forms.extend(form_names) 
-    return requested_forms
+    if form_names == ['']:
+        return "\nInvalid entry."
+    else:
+        requested_forms.extend(form_names) 
+        return requested_forms
 
 
 def jsonify_list_of_dicts(dict_list):
     """Convert list of dictionaries to JSON"""
 
-    json_format = json.dumps(dict_list, indent=4)
-    print('\n************************************')
-    print('********* Search Completed *********')
-    print('************************************\n')
-    return json_format
+    if dict_list == []:
+        return "\nInvalid entry. Search unsuccessful.\n"
+       
+    else:
+        json_format = json.dumps(dict_list, indent=4)
+        print('\n************************************')
+        print('********* Search Completed *********')
+        print('************************************\n')
+        return json_format

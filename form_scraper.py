@@ -2,6 +2,7 @@
 
 from requests_html import HTMLSession 
 from helper import strip_format
+import requests
 
 
 # requests-html object
@@ -17,7 +18,12 @@ def get_website_data(form_for_url):
         form_for_url = form_for_url[0]
     url_start = 'https://apps.irs.gov/app/picklist/list/priorFormPublication.html'   
     url_end = f'?resultsPerPage=200&sortColumn=sortOrder&indexOfFirstRow=0&value={form_for_url}&criteria=formNumber&submitSearch=Find&isDescending=false'
-    response = session.get(url_start + url_end)
+    
+    try:
+        response = session.get(url_start + url_end)
+    
+    except requests.exceptions.RequestException as err:
+        raise SystemExit(err)
     return response
 
 
@@ -53,10 +59,11 @@ def format_response(response, form):
                 form_dict['min_year'] = year
             elif year >= form_dict['min_year']:
                 pass
-
         # check for duplicates  
-        if form_dict not in dict_list_to_json:
+        if form_dict not in dict_list_to_json and form_dict['form_number'] != "":
             dict_list_to_json.append(form_dict)
+        else:
+            pass
     return parsed_forms
 
 
@@ -64,13 +71,16 @@ def format_all_responses(form_names):
     """Formats all requested form responses and adds to dict"""
 
     formatted_responses = []
-    for form in form_names:
-        response = get_website_data(form)
-        formatted_dicts = format_response(response, form)
+    if form_names == None:
+        return
+    else:
+        for form in form_names:
+            response = get_website_data(form)
+            formatted_dicts = format_response(response, form)
 
-        if len(form_names) == 1:
-            formatted_responses.extend(formatted_dicts)
-            return formatted_responses         
+            if len(form_names) == 1:
+                formatted_responses.extend(formatted_dicts)
+                return formatted_responses         
 
 
 def filter_responses(parsed_forms, requested_form):

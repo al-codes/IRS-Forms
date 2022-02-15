@@ -36,7 +36,7 @@ Set Up
     $ pip install requests
     $ pip install requests-HTML
 
---------------------------------------------------------------------------------------------
+
 
 -- Running the Script --
 
@@ -60,12 +60,7 @@ A menu will be displayed, prompting you to select which utility you would like t
 
 
 
-<<<<<<< HEAD
 -- Utility 1 --
-=======
-
-UTILITY 1 - SEARCH AND VIEW TAX FORMS
->>>>>>> 0bfcb8aea86587532083cd576b64599aded4c14a
 
 Enter '1' to view tax form details. Inputs are described by the following prompt:
 
@@ -88,11 +83,7 @@ Output will display a success message and all forms requested as json in this fo
         ]
 
 
-<<<<<<< HEAD
 -- Utility 2 --
-=======
-UTILITY 2 - DOWNLOAD TAX FORMS TO PDF
->>>>>>> 0bfcb8aea86587532083cd576b64599aded4c14a
 
 Enter '2' to enter a tax form name and a range of years (inclusive) to be downloaded.
 
@@ -113,11 +104,7 @@ subdirectory under the script's main directory.
 
 
 
-<<<<<<< HEAD
 * To QUIT the program, you can type 'quit' (not case sensitive).
-=======
---------------------------------------------------------------------------------------------
->>>>>>> 0bfcb8aea86587532083cd576b64599aded4c14a
 
 
 -- Feedback --

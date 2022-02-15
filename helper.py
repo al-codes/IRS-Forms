@@ -1,4 +1,4 @@
-""" Helper functions to format input """
+""" Helper functions """
 
 
 def strip_format(form):
